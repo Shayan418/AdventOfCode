@@ -22,7 +22,7 @@ public class CubeConundrum {
     }
 
     public int partone() {
-        String fileName = System.getProperty("user.dir") + "/day2/input";
+        String fileName = System.getProperty("user.dir") + "/2023/day2/input";
         int ans = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -54,7 +54,7 @@ public class CubeConundrum {
     }
 
     public int partwo() {
-        String fileName = System.getProperty("user.dir") + "/day2/input";
+        String fileName = System.getProperty("user.dir") + "/2023/day2/input";
         int ans = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
