@@ -14,7 +14,8 @@ public class WaitForIt {
         String line = br.readLine();
         int[] time = Stream.of(line.split("Time:")[1].trim().split("\\s+")).mapToInt(Integer::parseInt).toArray();
         line = br.readLine();
-        int[] distance = Stream.of(line.split("Distance:")[1].trim().split("\\s+")).mapToInt(Integer::parseInt).toArray();
+        int[] distance = Stream.of(line.split("Distance:")[1].trim().split("\\s+")).mapToInt(Integer::parseInt)
+                .toArray();
 
         for (int i = 0; i < time.length; ++i) {
             int t = time[i];
@@ -36,12 +37,12 @@ public class WaitForIt {
     public long parttwo() throws IOException {
         String fileName = System.getProperty("user.dir") + "/2023/day6/input.txt";
         BufferedReader br = new BufferedReader(new FileReader(fileName));
-        
+
         String line = br.readLine();
         String time = Stream.of(line.split("Time:")[1].trim().split("\\s+")).collect(Collectors.joining(""));
         line = br.readLine();
         String distance = Stream.of(line.split("Distance:")[1].trim().split("\\s+")).collect(Collectors.joining(""));
-        
+
         long t = Long.parseLong(time);
         long d = Long.parseLong(distance);
 
@@ -55,9 +56,35 @@ public class WaitForIt {
         return ans;
     }
 
+    public long parttwofast() throws IOException {
+        String fileName = System.getProperty("user.dir") + "/2023/day6/input.txt";
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+
+        String line = br.readLine();
+        String time = Stream.of(line.split("Time:")[1].trim().split("\\s+")).collect(Collectors.joining(""));
+        line = br.readLine();
+        String distance = Stream.of(line.split("Distance:")[1].trim().split("\\s+")).collect(Collectors.joining(""));
+
+        double t = Long.parseLong(time);
+        double d = Long.parseLong(distance);
+
+        double x = (t * t) + (-4 * d);
+        double root = Math.sqrt(x);
+
+        double positive_root = Math.ceil((t + root) / 2D);
+        double negative_root = Math.ceil((t - root) / 2D);
+
+        System.out.printf("%f", (positive_root - negative_root));
+
+        br.close();
+        return 0;
+    }
+
     public static void main(String[] args) throws IOException {
         WaitForIt ob = new WaitForIt();
         System.out.println(ob.partone());
         System.out.println(ob.parttwo());
+        System.out.println(ob.parttwofast());
+
     }
 }
