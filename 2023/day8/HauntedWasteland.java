@@ -35,7 +35,7 @@ public class HauntedWasteland {
         return ans;
     }
 
-    public long lcm(ArrayList<Integer> a){
+    public long lcm(ArrayList<Integer> a) {
         long max = Collections.max(a);
         long lcm = max * 1L;
 
@@ -46,7 +46,24 @@ public class HauntedWasteland {
             }
             lcm += max;
         }
+    }
 
+    public long gcd(long a, long b) {
+        while (b != 0) {
+            long t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
+    }
+
+    public long lcmfast(ArrayList<Integer> a) {
+        long lcm = a.get(0);
+        for (int i = 0; i < a.size(); ++i) {
+            long gcdTemp = gcd(lcm, a.get(i));
+            lcm = (lcm * a.get(i)) / gcdTemp;
+        }
+        return lcm;
     }
 
     public long parttwo() throws IOException {
@@ -70,12 +87,11 @@ public class HauntedWasteland {
                 origins.add(s);
         }
 
-
         for (String s : origins) {
             int count = 0;
             String curr = s;
             int idx = 0;
-            while (curr.charAt(2) != 'Z' ) {
+            while (curr.charAt(2) != 'Z') {
                 if (idx == intel.length())
                     idx = 0;
                 curr = intel.charAt(idx) == 'L' ? data.get(curr)[0] : data.get(curr)[1];
@@ -85,7 +101,7 @@ public class HauntedWasteland {
             answers.add(count);
         }
         System.out.println(answers);
-        long ans = lcm(answers);
+        long ans = lcmfast(answers);
 
         return ans;
     }
