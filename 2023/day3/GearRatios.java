@@ -24,7 +24,7 @@ public class GearRatios {
 
     public int partone() throws IOException {
         int ans = 0;
-        String fileName = System.getProperty("user.dir") + "/2023/day3/input";
+        String fileName = System.getProperty("user.dir") + "/2023/day3/input.txt";
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = "";
 
@@ -67,7 +67,7 @@ public class GearRatios {
 
     public int parttwo() throws IOException {
         int ans = 0;
-        String fileName = System.getProperty("user.dir") + "/2023/day3/input";
+        String fileName = System.getProperty("user.dir") + "/2023/day3/input.txt";
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = "";
 
