@@ -1,7 +1,6 @@
 package day1;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -15,8 +14,7 @@ public class HistorianHysteria {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
-                StringBuilder sb = new StringBuilder();
-                String[] numbers = line.split("   ");
+                String[] numbers = line.split(" {3}");
                 left.add(Integer.parseInt(numbers[0]));
                 right.add(Integer.parseInt(numbers[1]));
             }
@@ -41,10 +39,9 @@ public class HistorianHysteria {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
-                StringBuilder sb = new StringBuilder();
-                String[] numbers = line.split("   ");
+                String[] numbers = line.split(" {3}");
                 left.add(Integer.parseInt(numbers[0]));
-                right.put(Integer.parseInt(numbers[1]), right.computeIfAbsent(Integer.parseInt(numbers[1]), k -> 0) + 1);
+                right.put(Integer.parseInt(numbers[1]), right.computeIfAbsent(Integer.parseInt(numbers[1]), _ -> 0) + 1);
 
             }
         } catch (IOException e) {
