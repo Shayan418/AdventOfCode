@@ -1,7 +1,6 @@
 package day3;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -34,14 +33,11 @@ public class MullItOver {
             return 0;
         }
 
-        int first = 0;
-        int second = 0;
-
         int temp = idx+1;
         while (temp < input.length() && input.charAt(temp) >= '0' && input.charAt(temp) <= '9'){
             ++temp;
         }
-        first = Integer.parseInt(input.substring(idx, temp));
+        int first = Integer.parseInt(input.substring(idx, temp));
         idx = temp;
         if(idx == input.length() || input.charAt(idx) != ',') {
             return 0;
@@ -57,7 +53,7 @@ public class MullItOver {
         while (temp < input.length() && input.charAt(temp) >= '0' && input.charAt(temp) <= '9'){
             ++temp;
         }
-        second = Integer.parseInt(input.substring(idx, temp));
+        int second = Integer.parseInt(input.substring(idx, temp));
         idx = temp;
 
         if(idx < input.length() && input.charAt(idx) == ')'){
