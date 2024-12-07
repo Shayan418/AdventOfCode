@@ -85,9 +85,12 @@ public class GuardGallivant {
         }
 
 
+        boolean[][] visited = new boolean[input.length][input[0].length()];
+        travel(input, visited, directrion, row, col);
+
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[i].length(); j++) {
-                if (input[i].charAt(j) == '.'){
+                if (input[i].charAt(j) == '.' && visited[i][j]) {
                     //System.out.println(i + "|" + j);
                     ans += detectCycleIterative(input, new boolean[input.length][input[0].length()][4], directrion, row, col, i, j) ? 1 : 0;
                 }
@@ -151,7 +154,7 @@ public class GuardGallivant {
     public static void main(String[] args) throws IOException {
         String[] input = Util.InputReader.ReadFile("2024/day6/input.txt");
         GuardGallivant gallivant = new GuardGallivant();
-        System.out.println(gallivant.partOne(input));
+        //System.out.println(gallivant.partOne(input));
         System.out.println(gallivant.partTwo(input));
     }
 }

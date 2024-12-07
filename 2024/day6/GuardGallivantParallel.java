@@ -40,11 +40,13 @@ public class GuardGallivantParallel {
         }
 
         List<Future<Boolean>> results = new ArrayList<>();
+        boolean[][] visited = new boolean[input.length][input[0].length()];
+        travel(input, visited, directrion, row, col);
 
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[i].length(); j++) {
-                if (input[i].charAt(j) == '.'){
-                     //detectCycleIterative(input, new boolean[input.length][input[0].length()][4], directrion, row, col, i, j) ? 1 : 0;
+                if (input[i].charAt(j) == '.' && visited[i][j]) {
+                    //detectCycleIterative(input, new boolean[input.length][input[0].length()][4], directrion, row, col, i, j) ? 1 : 0;
                     int finalDirectrion = directrion;
                     int finalRow = row;
                     int finalCol = col;
@@ -93,6 +95,25 @@ public class GuardGallivantParallel {
                 prevRow = newRow;
                 prevCol = newCol;
             }
+        }
+    }
+
+
+    void travel(String[] input, boolean[][] visited, int direction, int row, int col) {
+        visited[row][col] = true;
+
+        int newRow = row + x[direction];
+        int newCol = col + y[direction];
+
+        if(!(newRow >= 0 && newRow < input.length && newCol >= 0 && newCol < input[0].length())) {
+            return;
+        }
+
+        if (input[newRow].charAt(newCol) == '#'){
+            direction = (direction + 1) % 4;
+            travel(input, visited, direction, row, col);
+        } else {
+            travel(input, visited, direction, newRow, newCol);
         }
     }
 
